@@ -19,4 +19,5 @@ func getAmount() int {
 }
 
 func calculate (amount int, currentCurrency string, newCurrency string) {
+	
 }
