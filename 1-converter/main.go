@@ -12,12 +12,12 @@ func main() {
 	fmt.Println(amount, EUR_RUB)
 }
 
-func getAmount() int {
-	var amount int
+func getAmount() float64 {
+	var amount float64
 	fmt.Scan(&amount)
 	return amount
 }
 
-func calculate (amount int, currentCurrency string, newCurrency string) {
+func calculate (amount float64, currentCurrency string, newCurrency string) {
 	
 }
