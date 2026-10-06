@@ -20,6 +20,9 @@ func main() {
 		"EUR_RUB": EUR_RUB,
 		"RUB_EUR": RUB_EUR,
 		"RUB_USD": RUB_USD,
+		"RUB_RUB": 1.0,
+		"USD_USD": 1.0,
+		"EUR_EUR": 1.0,
 	}
 	var first string = getFirstCurrency()
 	var amount = getAmount()
@@ -31,12 +34,19 @@ func main() {
 func getAmount() float64 {
 	fmt.Println("Введите число:")
 	var amount float64
-	fmt.Scan(&amount)
+	for {
+		_, err := fmt.Scan(&amount)
+		if err != nil {
+			fmt.Println("Ошибка при считывании значения, введите заново:")
+		} else {
+			break
+		}
+	}
 	return amount
 }
 
 func getFirstCurrency() string {
-	fmt.Println("Введите исходную валюту:")
+	fmt.Println("Введите исходную валюту (USD, RUB, EUR):")
 	var firstCurrency string
 	for {
 		fmt.Scan(&firstCurrency)
@@ -49,7 +59,7 @@ func getFirstCurrency() string {
 }
 
 func getSecondCurrency() string {
-	fmt.Println("Введите целевую валюту:")
+	fmt.Println("Введите целевую валюту (USD, RUB, EUR):")
 	var secondCurrency string
 	for {
 		fmt.Scan(&secondCurrency)
