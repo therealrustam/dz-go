@@ -9,17 +9,14 @@ import (
 func main() {
 	const USD_EUR float64 = 0.8884
 	const USD_RUB float64 = 84.75
-	const EUR_USD float64 = 1.1256
-	const EUR_RUB float64 = 95.4
 	const RUB_EUR float64 = 0.0105
-	const RUB_USD float64 = 0.0118
 	dictValue := map[string]float64{
 		"USD_EUR": USD_EUR,
 		"USD_RUB": USD_RUB,
-		"EUR_USD": EUR_USD,
-		"EUR_RUB": EUR_RUB,
+		"EUR_USD": 1 / USD_EUR,
+		"EUR_RUB": 1 / RUB_EUR,
 		"RUB_EUR": RUB_EUR,
-		"RUB_USD": RUB_USD,
+		"RUB_USD": 1 / USD_RUB,
 		"RUB_RUB": 1.0,
 		"USD_USD": 1.0,
 		"EUR_EUR": 1.0,
