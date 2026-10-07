@@ -12,25 +12,35 @@ type Bin struct {
 	name      string
 }
 
+type BinList struct {
+	bins []Bin
+}
+
+func newBinList() *BinList {
+	return &BinList{bins: []Bin{}}
+}
+
 func main() {
-	binList := []*Bin{}
+	binList := newBinList()
+	bins := binList.bins
 	for {
 		fmt.Println("Введите команду(1 - создать, 2 - выход):")
 		var command uint
 		_, err := fmt.Scan(&command)
 		if err != nil {
 			fmt.Println("Не удалось считать команду, введите заново:")
+			continue
 		}
 		if command == 1 {
 			bin := createBin()
-			binList = append(binList, bin)
+			bins = append(bins, bin)
 		} else {
 			break
 		}
 	}
 }
 
-func createBin() *Bin {
+func createBin() Bin {
 	var id string
 	var private bool
 	var name string
@@ -62,5 +72,5 @@ func createBin() *Bin {
 		}
 	}
 	bin := Bin{id, private, time.Now(), name}
-	return &bin
+	return bin
 }
