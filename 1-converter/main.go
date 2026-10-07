@@ -6,20 +6,19 @@ import (
 	"strings"
 )
 
+type mapValue = map[string]float64
+
 func main() {
 	const USD_EUR float64 = 0.8884
 	const USD_RUB float64 = 84.75
-	const EUR_USD float64 = 1.1256
-	const EUR_RUB float64 = 95.4
 	const RUB_EUR float64 = 0.0105
-	const RUB_USD float64 = 0.0118
-	dictValue := map[string]float64{
+	dictValue := mapValue{
 		"USD_EUR": USD_EUR,
 		"USD_RUB": USD_RUB,
-		"EUR_USD": EUR_USD,
-		"EUR_RUB": EUR_RUB,
+		"EUR_USD": 1 / USD_EUR,
+		"EUR_RUB": 1 / RUB_EUR,
 		"RUB_EUR": RUB_EUR,
-		"RUB_USD": RUB_USD,
+		"RUB_USD": 1 / USD_RUB,
 		"RUB_RUB": 1.0,
 		"USD_USD": 1.0,
 		"EUR_EUR": 1.0,
@@ -27,7 +26,7 @@ func main() {
 	var first string = getFirstCurrency()
 	var amount = getAmount()
 	var second string = getSecondCurrency()
-	result := calculate(amount, dictValue[fmt.Sprintf("%s_%s", first, second)])
+	result := calculate(amount, &dictValue, first, second)
 	fmt.Printf("Результат - %f", result)
 }
 
@@ -81,7 +80,8 @@ func checkCurrency(name string) bool {
 	}
 }
 
-func calculate(amount, cur float64) float64 {
+func calculate(amount float64, dictValue *mapValue, first, second string) float64 {
+	cur := (*dictValue)[fmt.Sprintf("%s_%s", first, second)]
 	result := amount * cur
 	return result
 }
