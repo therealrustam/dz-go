@@ -7,7 +7,7 @@ import (
 	"encoding/json"
 )
 
-func saveBins(binList *bins.BinList) {
+func SaveBins(binList *bins.BinList) {
 	data, err := json.Marshal(binList.Bins)
 	if err != nil {
 		fmt.Println("Ошибка перевода данных в json")
@@ -20,8 +20,8 @@ func saveBins(binList *bins.BinList) {
 	fmt.Println("Данные успешно сохранены в bins.json")
 }
 
-func readBins() bins.BinList {
-	var bins bins.BinList
+func ReadBins() []bins.Bin {
+	var bins []bins.Bin
 	data, err := os.ReadFile("bins.json")
 	if err != nil {
 		fmt.Println("Ошибка чтения файла")
